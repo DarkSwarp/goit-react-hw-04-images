@@ -5,18 +5,17 @@ import PropTypes from 'prop-types';
 // const modalRootContainer = document.querySelector('#modal-root');
 
 export function Modal({ closeESC, close, largeImageURL }) {
-  useEffect(() => {
-    window.addEventListener('keydown', ESCpress);
-    return () => {
-      window.removeEventListener('keydown', ESCpress);
-    };
-  }, []);
-
   const ESCpress = e => {
     if (e.code === `Escape`) {
       return closeESC();
     }
   };
+  useEffect(() => {
+    window.addEventListener('keydown', ESCpress);
+    return () => {
+      window.removeEventListener('keydown', ESCpress);
+    };
+  }, [ESCpress]);
 
   return (
     <div className="overlay" onClick={close}>
